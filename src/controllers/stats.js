@@ -16,6 +16,8 @@ export const getStats = async (req, res, next) => {
       totalDevelopers,
       totalExamples,
       totalIgboDefinitions,
+      totalProverbs,
+      totalBibleVerses,
     ] = await Promise.all([
       Stat.findOne({ type: StatTypes.SUFFICIENT_WORDS }),
       Stat.findOne({ type: StatTypes.HEADWORD_AUDIO_PRONUNCIATIONS }),
@@ -23,6 +25,8 @@ export const getStats = async (req, res, next) => {
       Developer.find(searchForAllDevelopers()),
       Stat.findOne({ type: StatTypes.SUFFICIENT_EXAMPLES }),
       Stat.findOne({ type: StatTypes.IGBO_DEFINITIONS }),
+      Stat.findOne({ type: StatTypes.PROVERB_EXAMPLES }),
+      Stat.findOne({ type: StatTypes.BIBLICAL_EXAMPLES }),
     ]);
     const stats = {
       totalWords: totalWords.value,
@@ -31,6 +35,8 @@ export const getStats = async (req, res, next) => {
       totalNsibidiWords: totalNsibidiWords.value,
       totalDevelopers: totalDevelopers.length,
       totalIgboDefinitions: totalIgboDefinitions.value,
+      totalProverbs: totalProverbs.value,
+      totalBibleVerses: totalBibleVerses.value,
     };
     await handleCloseConnection(connection);
     return res.send(stats);

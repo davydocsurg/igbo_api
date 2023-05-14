@@ -9,6 +9,8 @@ const Statistics = ({
   totalExamples,
   totalAudioPronunciations,
   totalIgboDefinitions,
+  totalProverbs,
+  totalBibleVerses,
   totalNsibidiWords,
   totalDevelopers,
   contributors,
@@ -28,6 +30,14 @@ const Statistics = ({
         <Stat
           value={totalIgboDefinitions}
           header={t('Words with Igbo definitions').replace('{{number}}', totalIgboDefinitions)}
+        />
+        <Stat
+          value={totalProverbs}
+          header={t('Igbo Proverbs').replace('{{number}}', totalProverbs)}
+        />
+        <Stat
+          value={totalBibleVerses}
+          header={t('Bible Verses').replace('{{number}}', totalBibleVerses)}
         />
         <Stat value={totalNsibidiWords} header={t('Words in Nsịbịdị').replace('{{number}}', totalNsibidiWords)} />
         <Stat value={totalDevelopers} header={t('Developers using the Igbo API')} />
@@ -73,6 +83,8 @@ Statistics.propTypes = {
   totalExamples: PropTypes.number,
   totalAudioPronunciations: PropTypes.number,
   totalIgboDefinitions: PropTypes.number,
+  totalProverbs: PropTypes.number,
+  totalBibleVerses: PropTypes.number,
   totalNsibidiWords: PropTypes.number,
   totalDevelopers: PropTypes.number,
   contributors: PropTypes.arrayOf(PropTypes.shape({})),
@@ -84,6 +96,8 @@ Statistics.defaultProps = {
   totalExamples: 0,
   totalAudioPronunciations: 0,
   totalIgboDefinitions: 0,
+  totalProverbs: 0,
+  totalBibleVerses: 0,
   totalNsibidiWords: 0,
   totalDevelopers: 0,
   contributors: [],
