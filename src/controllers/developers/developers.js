@@ -60,9 +60,19 @@ export const postDeveloper = async (req, res, next) => {
 
 export const getDeveloper = async (req, res, next) => {
   try {
-    const { developer } = req;
+    const { headers: data } = req;
+    const apiKey = data['x-api-key' || 'X-API-Key'];
+    if (!apiKey) {
+      throw new Error('No API key provided.');
+    }
 
-    return res.status(200).send({
+    const developer = await findDeveloper(apiKey);
+
+    if (!developer) {
+      throw new Error('No developer exists');
+    }
+
+    return res.send({
       developer,
     });
   } catch (err) {
